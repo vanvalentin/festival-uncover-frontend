@@ -8,3 +8,6 @@ In order to do so, the user will be presented with a list of festival for the cu
 
 The user will be able to search for their favorite genre, tag or stage to find artists that correspond the best to what they look for.
 
+## Live version
+
+Currently available here: https://hungry-heisenberg-806355.netlify.com
