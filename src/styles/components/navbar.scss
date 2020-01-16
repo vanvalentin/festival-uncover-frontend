@@ -1,15 +1,20 @@
+@import "../fonts.scss";
+
 // Navigation Variables
 $content-width: 1000px;
 $breakpoint: 799px;
 $nav-height: 70px;
+$nav-items-height: 40px;
+$items-font: 'Bebas Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 $nav-background: #262626;
 $nav-font-color: #ffffff;
 $link-hover-color: #2581DC;
 
+
 // Outer navigation wrapper
 .navigation {
+  padding-top: 15px;
   height: $nav-height;
-  background: $nav-background;
 }
 
 // Logo and branding
@@ -35,10 +40,11 @@ $link-hover-color: #2581DC;
 
 // Navigation 
 nav {
+  //padding-left: 150px;
   float: right;
   ul {
     list-style: none;
-    margin: 0;
+    margin: 0 0 0 20px;
     padding: 0;
     li {
       float: left;
@@ -46,19 +52,22 @@ nav {
       a,
       a:visited {
         display: block;
-        padding: 0 20px;
-        line-height: $nav-height;
-        background: $nav-background;
+        text-align:left;
+        margin-right:30px;
+        padding: (($nav-height - $nav-items-height) / 2) 40px 0 30px;
+        line-height: $nav-items-height;
         color: $nav-font-color;
+        font-family: $items-font;
+        font-size:1.4em;
         text-decoration: none;
         &:hover {
-          background: $link-hover-color;
+          //background: $link-hover-color;
           color: $nav-font-color;
         }
-        &:not(:only-child):after {
+        /*&:not(:only-child):after {
           padding-left: 4px;
           content: ' ▾';
-        }
+        }*/
       } // Dropdown list
       ul li {
         min-width: 190px;
@@ -68,6 +77,12 @@ nav {
         }
       }
     }
+  }
+  .item-line {
+    width:60%;
+    height:2px;
+    margin-left:25px;
+    background-color: white;
   }
 }
 
@@ -160,11 +175,4 @@ nav {
       transform: rotate(-45deg);
     }
   }
-}
-
-// Page content 
-article {
-  max-width: $content-width;
-  margin: 0 auto;
-  padding: 10px;
 }
