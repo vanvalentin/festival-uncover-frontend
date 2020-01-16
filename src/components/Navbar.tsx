@@ -19,16 +19,19 @@ export default class Navbar extends React.Component<Props, object> {
             <ul className="nav-list">
                 <li>
                 <a href="#!">Home</a>
-                <div className="item-line"></div>
+                <div style={this.props.currentPage === "home" ? {} : {display:"none"}} className="item-line"></div>
                 </li>
                 <li>
                 <a href="#!">Menu 1</a>
+                <div style={this.props.currentPage === "menu1" ? {} : {display:"none"}} className="item-line"></div>
                 </li>
                 <li>
                 <a href="#!">About</a>
+                <div style={this.props.currentPage === "about" ? {} : {display:"none"}} className="item-line"></div>
                 </li>
                 <li>
                 <a href="#!">Contact</a>
+                <div style={this.props.currentPage === "contact" ? {} : {display:"none"}} className="item-line"></div>
                 </li>
             </ul>
             </nav>
