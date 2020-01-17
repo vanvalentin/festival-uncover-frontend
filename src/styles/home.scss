@@ -12,11 +12,12 @@
 
     .festivals-highlight-container {
         display: grid;
+        margin-left:22.5%;
         width:55%;
         text-align: center;
         font-size:4em;
         height:500px;
-        grid-template-columns: 28% 6% 20% 3% 23%;
+        grid-template-columns: 28% 6% 20% 3%;
         grid-template-rows: 50% 50%;
 
         div {
