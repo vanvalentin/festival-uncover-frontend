@@ -40,8 +40,12 @@ export default class Home extends React.Component<object, IState> {
                 <Navbar 
                     currentPage={"home"}
                 />
-                <div className="festivals-highlight-container">
-                    {this.createTopFestivalGrid()}
+                <div>
+                    <h2>Most popular festivals:</h2>
+                    <div className="festivals-highlight-container">
+                        {this.createTopFestivalGrid()}
+                    </div>
+                
                 </div>
             </div>
         );
@@ -56,17 +60,18 @@ export default class Home extends React.Component<object, IState> {
         console.log(this.state.topFestivalsImgs);
         for(let i = 0; i < this.state.topFestivalsImgs.length; ++i){
             const currFestival = this.state.topFestivalsImgs[i];
-            console.log(this.state.topFestivalsImgs);
+
             const bgImg: React.CSSProperties = {
                 background: `url(${currFestival.img})` + " center center",
                 backgroundSize: "cover"
             };
-            console.log(bgImg);
 
             gridElmts.push(
                 <div className={"block-"+ (i+1) +" block-container"}>
                     <div className="img" style={bgImg}>
-                        <div className="title">{currFestival.title}</div>
+                        <div className="title-container">
+                            <div className="title">{currFestival.title}</div>
+                        </div>
                     </div>
                 </div>);
         }
