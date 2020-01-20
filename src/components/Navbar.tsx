@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import logo from '../assets/img/logo.png';
+import logo from '../assets/img/logo_98x70.png';
 import $ from "jquery";
 
 require('../styles/components/navbar.scss');
@@ -19,10 +19,10 @@ export default class Navbar extends React.Component<Props, object> {
     return (
       <section className="navigation">
       <div className="nav-container">
-          <div className="brand">
-            <a href="#!"><img src={logo}/></a>
-          </div>
-          <nav>
+        <div className="brand">
+          <a href="#!"><img src={logo}/></a>
+        </div>
+        <nav>
           <div className="nav-mobile"><a id="nav-toggle" ref={(e) => this.navToggle = e as HTMLElement} onClick={this.navToggleClick.bind(this)} href="#!"><span></span></a></div>
           <ul className="nav-list" ref={(e) => this.navList = e as HTMLElement}>
               <li>
@@ -30,8 +30,8 @@ export default class Navbar extends React.Component<Props, object> {
               <div style={this.props.currentPage === "home" ? {} : {display:"none"}} className="item-line"></div>
               </li>
               <li>
-              <a href="#!">Menu 1</a>
-              <div style={this.props.currentPage === "menu1" ? {} : {display:"none"}} className="item-line"></div>
+              <a href="#!">Festivals</a>
+              <div style={this.props.currentPage === "festivals" ? {} : {display:"none"}} className="item-line"></div>
               </li>
               <li>
               <a href="#!">About</a>

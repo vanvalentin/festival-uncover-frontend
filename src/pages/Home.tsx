@@ -40,12 +40,14 @@ export default class Home extends React.Component<object, IState> {
                 <Navbar 
                     currentPage={"home"}
                 />
-                <div>
-                    <h2>Most popular festivals:</h2>
-                    <div className="festivals-highlight-container">
-                        {this.createTopFestivalGrid()}
+
+                <div className="homepage-container">
+                    <div className="intro">
+                        <div className="text"><span>Browse, listen and discover new artists from the lineup of your favorite festival.</span></div>
+                        <div className="separator-line"></div>
                     </div>
-                
+                    <h2>Most popular festivals</h2>
+                    {this.createTopFestivalGrid()}
                 </div>
             </div>
         );
