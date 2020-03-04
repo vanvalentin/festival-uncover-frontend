@@ -7,26 +7,27 @@ import edcVegas from '../assets/img/festivals/edc-vegas-2020.jpg';
 import creamfields from '../assets/img/festivals/creamfields-2020.jpg';
 import ultraMiami from '../assets/img/festivals/ultra-miami-2020.jpg';
 import hellfest from '../assets/img/festivals/hellfest-2020.jpg';
+import { Link } from "react-router-dom";
 
 require('../styles/home.scss');
 
 
 interface IState {
-    topFestivalsImgs: {title: string, img: string}[];
+    topFestivalsImgs: {id: number, title: string, img: string}[];
 }
 
 export default class Home extends React.Component<object, IState> {
 
     constructor(props: object) {
         super(props);
-        const topFestivalsImgs: {title: string, img: string}[] = [];
+        const topFestivalsImgs: {id: number, title: string, img: string}[] = [];
 
-        topFestivalsImgs.push({title: "Coachella 2020", img: coachella});
-        topFestivalsImgs.push({title: "TML Winter 2020", img: tmlWinter});
-        topFestivalsImgs.push({title: "EDC Vegas 2020", img: edcVegas});
-        topFestivalsImgs.push({title: "Creamfields 2020", img: creamfields});
-        topFestivalsImgs.push({title: "Ultra Miami 2020", img: ultraMiami});
-        topFestivalsImgs.push({title: "Hellfest 2020", img: hellfest});
+        topFestivalsImgs.push({id: 1, title: "Coachella 2020", img: coachella});
+        topFestivalsImgs.push({id: 2, title: "TML Winter 2020", img: tmlWinter});
+        topFestivalsImgs.push({id: 3, title: "EDC Vegas 2020", img: edcVegas});
+        topFestivalsImgs.push({id: 4, title: "Creamfields 2020", img: creamfields});
+        topFestivalsImgs.push({id: 5, title: "Ultra Miami 2020", img: ultraMiami});
+        topFestivalsImgs.push({id: 6, title: "Hellfest 2020", img: hellfest});
 
         this.state = {topFestivalsImgs};
     }
@@ -64,13 +65,13 @@ export default class Home extends React.Component<object, IState> {
             };
 
             gridElmts.push(
-                <div className={"block-"+ (i+1) +" block-container"}>
+                <Link to={'/festival/'+currFestival.id} className={"block-"+ (i+1) +" block-container"}>
                     <div className="img" style={bgImg}>
                         <div className="title-container">
                             <div className="title">{currFestival.title}</div>
                         </div>
                     </div>
-                </div>);
+                </Link>);
         }
 
         return gridElmts;

@@ -77,10 +77,15 @@ nav {
       }
     }
   }
+  .active-nav {
+    .item-line {
+      display: block;
+    }
+  }
   .item-line {
-    width:60%;
+    display: none;
+    width:calc(100% + 15px);
     height:2px;
-    margin-left:25px;
     background-color: white;
   }
 }
