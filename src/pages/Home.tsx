@@ -37,10 +37,6 @@ export default class Home extends React.Component<object, IState> {
     render() {
         return (
             <div className="home">
-                <Navbar 
-                    currentPage={"home"}
-                />
-
                 <div className="homepage-container">
                     <div className="intro">
                         <div className="text"><span>Browse, listen and discover new artists from the lineup of your favorite festival.</span></div>
@@ -59,7 +55,6 @@ export default class Home extends React.Component<object, IState> {
         }
 
         const gridElmts: JSX.Element[] = [];
-        console.log(this.state.topFestivalsImgs);
         for(let i = 0; i < this.state.topFestivalsImgs.length; ++i){
             const currFestival = this.state.topFestivalsImgs[i];
 

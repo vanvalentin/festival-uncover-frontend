@@ -21,8 +21,8 @@ $link-hover-color: #2581DC;
   padding-left: 20px;
   float: left;
   height: $nav-height;
-  a,
-  a:visited {
+  .nav-link,
+  .nav-link:visited {
     color: $nav-font-color;
     text-decoration: none;
   }
@@ -48,8 +48,8 @@ nav {
     li {
       float: left;
       position: relative;
-      a,
-      a:visited {
+      .nav-link,
+      .nav-link:visited {
         display: block;
         text-align:left;
         margin-right:30px;
@@ -70,7 +70,7 @@ nav {
       } // Dropdown list
       ul li {
         min-width: 190px;
-        a {
+        .nav-link {
           padding: 15px;
           line-height: 20px;
         }
