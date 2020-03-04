@@ -21,7 +21,7 @@ interface IState {
 }
 
 export default class Performance extends React.Component<IProps, IState> {
-    private topTracksNames: string[] = [];
+    private topTracksYtbId: string[] = [];
 
 
     constructor(props: IProps) {
@@ -59,8 +59,9 @@ export default class Performance extends React.Component<IProps, IState> {
         }).then((r) => r.json());
 
         for(let i = 0; i < 3 && i < respTracks.tracks.length; ++i){
-            this.topTracksNames.push(respTracks.tracks[i].name);
+            this.topTracksYtbId.push(await this.getYoutubeVideoId(this.props.artist, respTracks.tracks[i].name));
         }
+        
 
         this.setState({
             loaded: true
@@ -88,15 +89,17 @@ export default class Performance extends React.Component<IProps, IState> {
 
     private createTopTracksPlayers(): JSX.Element[] {
         const result: JSX.Element[] = []; 
-        for(let track of this.topTracksNames){
-            this.getYoutubeVideo(this.props.artist, track);
-            result.push(<div>{track}</div>);
+        for(let ytbId of this.topTracksYtbId){
+            result.push(<div>
+                <iframe id="ytplayer" width="720" height="405"
+                    src={"https://www.youtube.com/embed/"+ytbId} />
+                </div>);
         }
 
         return result;
     }
 
-    private async getYoutubeVideo(artistName: string, trackName: string){
+    private async getYoutubeVideoId(artistName: string, trackName: string){
         const escapedSearch: string = artistName.replace(/\s/g, '%20') + "%20" + trackName.replace(/\s/g, '%20');
 
         const resp = await fetch("https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q="+escapedSearch+"&key="+this.props.youtubeApiKey, {
@@ -105,6 +108,6 @@ export default class Performance extends React.Component<IProps, IState> {
             }
         }).then((r) => r.json());
 
-        console.log(resp);
+        return resp.items[0].id.videoId;
     }
 }
