@@ -1,3 +1,67 @@
 .performance{
-    color: #ffffff
+    a {
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+    .artist-title {
+        width: 250px;
+        height: 250px;
+        overflow: hidden;
+
+        .artist-img {
+            display: grid;
+            grid-template-rows: 0.1fr 0.8fr 0.3fr 1fr 0.1fr;
+            
+            width: 100%;
+            height: 100%;
+
+            transition: transform .5s ease;
+
+            h2 {
+                grid-row: 2/3;
+                border: solid 2px #ffffff;
+                padding-bottom: 5px;
+                margin-left: 15px;
+                margin-right: 15px;
+                text-align:center;
+                transition: transform .5s ease;
+            }
+    
+            .listen-spotify-btn {
+                grid-row: 4/5;
+                width:100%;
+                height:15%;
+                margin-top: 70px;
+                padding-top: 15px;
+                padding-bottom: 15px;
+    
+                opacity: 0;
+                transition: opacity  .5s ease;
+
+                background-color: #00000088;
+    
+                img {
+                    display:block;
+                    margin:auto;
+                    height: 100%;
+                }
+            }
+        }
+    }
+
+    
+    .artist-title:hover {
+        .artist-img {
+            transform: scale(1.1);
+        }
+
+        h2 {
+            transform: scale(0.9);
+        }
+
+        .listen-spotify-btn {
+            opacity: 1;
+        }
+    }
 }

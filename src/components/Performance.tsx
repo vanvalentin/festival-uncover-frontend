@@ -1,23 +1,27 @@
 import React, { ReactNode } from "react";
 import { google } from 'googleapis';
 
+import listenSpotifyImg from '../assets/img/listen-on-spotify.png';
+
 require('../styles/components/performance.scss');
 
 interface IProps {
     spotifyToken?: string;
     youtubeApiKey?: string;
+
     artist: string;
     startTime?: Date;
     endTime?: Date;
     scene?: string;
     genres?: string[];
     tags?: string;
-    img?: string;
 }
 
 interface IState {
-    loaded: boolean
-    error: "none" | "couldNotFindArtist"
+    loaded: boolean;
+    error: "none" | "couldNotFindArtist";
+    artistImgUrl?: string;
+    artistSpotifyUrl?: string;
 }
 
 export default class Performance extends React.Component<IProps, IState> {
@@ -35,7 +39,10 @@ export default class Performance extends React.Component<IProps, IState> {
 
     async componentDidMount(){
         const escapedArtistName: string = this.props.artist.replace(/\s/g, '%20');
+        let artistImgUrl: string | undefined = undefined;
+        let artistSpotifyUrl: string | undefined = undefined;
 
+        // Getting the artist id from Spotify
         const respArtists = await fetch("https://api.spotify.com/v1/search?q="+escapedArtistName+"&type=artist", {
             headers: {
                 Authorization: 'Bearer ' + this.props.spotifyToken
@@ -51,7 +58,21 @@ export default class Performance extends React.Component<IProps, IState> {
             return;
         }
 
-        const respTracks = await fetch("https://api.spotify.com/v1/artists/"+respArtists.artists.items[0].id+"/top-tracks?country=US", {
+        const artistInfos = respArtists.artists.items[0];
+        console.log();
+
+        // Getting the artist image
+        if(artistInfos.images.length > 1){
+            artistImgUrl = artistInfos.images[1].url;
+        }
+
+        // Getting the artist Spotify url
+        if(artistInfos.external_urls.spotify){
+            artistSpotifyUrl = artistInfos.external_urls.spotify;
+        }
+
+        // Getting the top tracks of the artist
+        const respTracks = await fetch("https://api.spotify.com/v1/artists/"+artistInfos.id+"/top-tracks?country=US", {
             headers: {
                 Authorization: 'Bearer ' + this.props.spotifyToken
             },
@@ -64,7 +85,9 @@ export default class Performance extends React.Component<IProps, IState> {
         
 
         this.setState({
-            loaded: true
+            loaded: true,
+            artistImgUrl,
+            artistSpotifyUrl
         })
     }
 
@@ -77,9 +100,17 @@ export default class Performance extends React.Component<IProps, IState> {
             return <div className="performance">Loading...</div>
         }
 
+
         return (
             <div className="performance">
-                <h2>{this.props.artist}</h2>
+                <a target="_blank" href={this.state.artistSpotifyUrl}>
+                    <div className="artist-title">
+                        <div className="artist-img" style={{ background: "url("+this.state.artistImgUrl+") center / cover no-repeat"}}>
+                            <h2>{this.props.artist}</h2>
+                            <div className="listen-spotify-btn"><img src={listenSpotifyImg} /></div>
+                        </div>
+                    </div>
+                </a>
                 <div>
                     {this.createTopTracksPlayers()}
                 </div>
@@ -90,9 +121,10 @@ export default class Performance extends React.Component<IProps, IState> {
     private createTopTracksPlayers(): JSX.Element[] {
         const result: JSX.Element[] = []; 
         for(let ytbId of this.topTracksYtbId){
-            result.push(<div>
-                <iframe id="ytplayer" width="720" height="405"
-                    src={"https://www.youtube.com/embed/"+ytbId} />
+            result.push(
+                <div>
+                    <iframe id="ytplayer" width="270" height="200"
+                        src={"https://www.youtube.com/embed/"+ytbId} />
                 </div>);
         }
 
