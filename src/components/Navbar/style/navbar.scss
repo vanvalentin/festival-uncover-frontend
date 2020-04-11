@@ -1,35 +1,12 @@
-@import "../fonts.scss";
-@import "../variables.scss";
-
-// Navigation Variables
-$content-width: 1000px;
-$breakpoint: 799px;
-$nav-items-height: 40px;
-$nav-background: #262626;
-$nav-font-color: #ffffff;
-$link-hover-color: #2581DC;
-
+@import "../../../styles/variables.scss";
+@import "./nav-variables.scss";
+@import "./logo.scss";
 
 // Outer navigation wrapper
 .navigation {
   height: $nav-height;
 }
 
-// Logo and branding
-.brand {
-  position: absolute;
-  padding-left: 20px;
-  float: left;
-  height: $nav-height;
-  .nav-link,
-  .nav-link:visited {
-    color: $nav-font-color;
-    text-decoration: none;
-  }
-  img {
-    height:100%;
-  }
-}
 
 // Container with no padding for navbar
 .nav-container {

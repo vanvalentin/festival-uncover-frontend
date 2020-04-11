@@ -1,0 +1,17 @@
+@import "./nav-variables.scss";
+
+// Logo and branding
+.brand {
+    position: absolute;
+    padding-left: 20px;
+    float: left;
+    height: $nav-height;
+    .nav-link,
+    .nav-link:visited {
+        color: $nav-font-color;
+        text-decoration: none;
+    }
+    img {
+        height:100%;
+    }
+}
