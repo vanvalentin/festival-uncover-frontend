@@ -2,16 +2,9 @@
 
 // Logo and branding
 .brand {
-    position: absolute;
-    padding-left: 20px;
-    float: left;
-    height: $nav-height;
-    .nav-link,
-    .nav-link:visited {
-        color: $nav-font-color;
-        text-decoration: none;
-    }
-    img {
-        height:100%;
-    }
-}
+    position: absolute !important;
+    margin-left:15px;
+    width:100%;
+    max-width: 98px;
+    max-height: 70px;
+  }
